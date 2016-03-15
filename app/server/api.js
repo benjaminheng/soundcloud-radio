@@ -16,23 +16,28 @@ router.get('/stream', (req, res) => {
 
     let genres = req.query.genres;
     let tags = req.query.tags;
-    let q = req.query.q;
-    console.log(`GET /stream --> Genres: ${genres} | Tags: ${tags} | Query: ${q}`);
+    console.log(`GET /stream --> Genres: ${genres} | Tags: ${tags}`);
 
-    const tracks = soundcloud.search(genres, tags, q).then(result => {
-        let tracks = [];
-        result.map(track => {
+    let tracks = [];
+
+    soundcloud.searchRandom(genres, tags, 'e').then(results => {
+        results.forEach(track => {
             tracks.push({
                 username: track.user.username,
                 title: track.title,
                 stream_url: track.stream_url,
                 duration: track.duration,
-                id: track.id
+                id: track.id,
+                likes_count: track.likes_count,
+                playback_count: track.playback_count
             });
-            const title = `${track.user.username} - ${track.title}`;
-            const url = util.buildUrl(track.stream_url, {client_id: config.apiKey});
-            streams.pushUrl(url, title);
         });
+        const track = util.getRandomElement(tracks);
+        const title = `${track.username} - ${track.title}`;
+        const url = util.buildUrl(track.stream_url, {client_id: config.apiKey});
+        streams.pushUrl(url, title);
+    }).catch(err => {
+        console.log('Error -> ' + err);
     });
 });
 
