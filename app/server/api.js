@@ -1,6 +1,6 @@
 import Express from 'express';
 import Streams from '../common/utils/streams.js';
-import soundcloud from './soundcloud';
+import SoundCloud from './soundcloud';
 import util from '../common/utils/util.js';
 import config from '../../config';
 
@@ -18,6 +18,7 @@ router.get('/stream', (req, res) => {
     let tags = req.query.tags;
     console.log(`GET /stream --> Genres: ${genres} | Tags: ${tags}`);
 
+    const soundcloud = new SoundCloud();
     let tracks = [];
 
     soundcloud.searchRandom(genres, tags, 'e').then(results => {
