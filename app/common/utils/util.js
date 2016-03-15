@@ -21,7 +21,7 @@ function formatDate(date) {
         throw new TypeError('date must be either a Date instance or a number.');
     }
     const year = date.getFullYear();
-    const month = padDateComponent(date.getMonth());
+    const month = padDateComponent(date.getMonth() + 1);
     const day = padDateComponent(date.getDate());
     const hours = padDateComponent(date.getHours());
     const minutes = padDateComponent(date.getMinutes());

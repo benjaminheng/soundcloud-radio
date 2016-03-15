@@ -6,6 +6,14 @@ import config from '../../config';
 
 const router = Express.Router();
 
+function queueRandomTrack(streams, soundcloud) {
+    const index = util.getRandomInt(0, soundcloud.tracks.length);
+    const track = soundcloud.tracks.splice(index, 1)[0];
+    const title = `${track.username} - ${track.title}`;
+    const url = util.buildUrl(track.stream_url, {client_id: config.apiKey});
+    streams.pushUrl(url, title);
+}
+
 router.get('/stream', (req, res) => {
     res.writeHead(200, {
         'Content-Type': 'audio/mpeg',
@@ -19,24 +27,12 @@ router.get('/stream', (req, res) => {
     console.log(`GET /stream --> Genres: ${genres} | Tags: ${tags}`);
 
     const soundcloud = new SoundCloud();
-    let tracks = [];
 
-    soundcloud.searchRandom(genres, tags, 'e').then(results => {
-        results.forEach(track => {
-            tracks.push({
-                username: track.user.username,
-                title: track.title,
-                stream_url: track.stream_url,
-                duration: track.duration,
-                id: track.id,
-                likes_count: track.likes_count,
-                playback_count: track.playback_count
-            });
-        });
-        const track = util.getRandomElement(tracks);
-        const title = `${track.username} - ${track.title}`;
-        const url = util.buildUrl(track.stream_url, {client_id: config.apiKey});
-        streams.pushUrl(url, title);
+    soundcloud.searchRandom(genres, tags, 'e').then(() => {
+        queueRandomTrack(streams, soundcloud);
+        return soundcloud.populateTracks(genres, tags);
+    }).then(() => {
+        console.log('done -> ' + soundcloud.tracks.length);
     }).catch(err => {
         console.log('Error -> ' + err);
     });
