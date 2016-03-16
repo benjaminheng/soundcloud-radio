@@ -25,6 +25,11 @@ export default class Streams {
             stream.pipe(this.writer, {end: false});
         }
         this.lastStream = stream;
+
+        // if stream ends before next one arrives, reset to undefined.
+        this.lastStream.on('end', () => {
+            this.lastStream = undefined;
+        });
     }
 }
 

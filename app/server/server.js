@@ -15,10 +15,12 @@ const publicPath = path.join(__dirname, '..', '..', 'dist');
 app.use(Express.static(publicPath));
 app.use('/', api);
 
-app.listen(port, (error) => {
+const server = app.listen(port, (error) => {
     if (error) {
         console.error(error);
     } else {
         console.info(`==> Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
     }
 });
+
+server.setTimeout(0);

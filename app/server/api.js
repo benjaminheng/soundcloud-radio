@@ -28,10 +28,17 @@ router.get('/stream', (req, res) => {
 
     const soundcloud = new SoundCloud();
 
+    res.on('close', () => {
+        console.log('Response closed');
+    });
+
     soundcloud.searchRandom(genres, tags, 'e').then(() => {
         queueRandomTrack(streams, soundcloud);
         return soundcloud.populateTracks(genres, tags);
     }).then(() => {
+        queueRandomTrack(streams, soundcloud);
+        queueRandomTrack(streams, soundcloud);
+        queueRandomTrack(streams, soundcloud);
         console.log('done -> ' + soundcloud.tracks.length);
     }).catch(err => {
         console.log('Error -> ' + err);
