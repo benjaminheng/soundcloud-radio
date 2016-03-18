@@ -11,9 +11,18 @@ if (!config.apiKey) {
     process.exit(1);
 }
 
+if (!config.isProduction) {
+    const devMiddleware = require('./devMiddleware').default;
+    app.use(devMiddleware());
+}
+
 const publicPath = path.join(__dirname, '..', '..', 'dist');
 app.use(Express.static(publicPath));
 app.use('/', api);
+
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
 
 const server = app.listen(port, (error) => {
     if (error) {
