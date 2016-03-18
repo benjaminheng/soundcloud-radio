@@ -9,6 +9,10 @@ export default class SoundCloud {
         this.MONTH = 2592000000;               // 30 days
         this.WEEK = 604800000;                 // 7 days
 
+        // Track filters
+        this.MIN_DURATION = 60*1000;
+        this.MAX_DURATION = 600*1000;
+
         this.tracks = [];
         this.trackIds = [];
     }
@@ -35,6 +39,15 @@ export default class SoundCloud {
         }
 
         return params;
+    }
+
+    isValid(track) {
+        let valid = false;
+        // Track duration between MIN_DURATION and MAX_DURATION
+        if (track.duration >= this.MIN_DURATION && track.duration <= this.MAX_DURATION) {
+            valid = true;
+        }
+        return valid;
     }
 
     getRange(period) {
@@ -84,7 +97,7 @@ export default class SoundCloud {
             })
             .then(json => {
                 json.forEach(track => {
-                    if (this.trackIds.indexOf(track.id) < 0) {
+                    if (this.isValid(track) && this.trackIds.indexOf(track.id) < 0) {
                         this.tracks.push({
                             username: track.user.username,
                             title: track.title,
