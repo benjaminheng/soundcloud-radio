@@ -27,6 +27,9 @@ module.exports = {
         }, {
             test: /\.scss$/,
             loader: 'style!css!sass'
+        }, {
+            test: /\.(png|jpg)$/,
+            loader: 'file'
         }]
     }
 };

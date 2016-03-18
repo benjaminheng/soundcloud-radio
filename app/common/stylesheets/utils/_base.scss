@@ -14,7 +14,25 @@ html, body {
 
 body {
     font-family: $base-font-family;
+    font-size: $base-font-size;
     line-height: $line-height-ratio;
     color: $text-color;
     background-color: $body-bg-color;
+}
+
+h1 {
+    font-size: 1.6em;
+}
+
+h2 {
+    font-size: 1.3em;
+}
+
+ul.horizontal {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+        display: inline;
+    }
 }
