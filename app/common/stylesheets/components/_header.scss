@@ -5,14 +5,11 @@
     position: relative;
 
     .header {
-        max-width: $content-width;
-        margin: auto;
-        padding: 0px $spacing-unit;
+        @include content-width($content-width);
 
         .title {
             float: left;
-            color: #F9F9F9;
-            text-shadow: 1px 1px 2px #1F1F1F;
+            text-shadow: $text-shadow;
             font-size: 1.3em;
             display: inline-block;
             margin: 0;
@@ -24,9 +21,8 @@
             line-height: 1.3*2;     // match line-height of title
 
             .nav-link {
-                color: #F9F9F9;
+                color: $text-color;
                 text-decoration: none;
-                text-shadow: 1px 1px 2px #1F1F1F;
 
                 &:hover {
                     text-decoration: underline;

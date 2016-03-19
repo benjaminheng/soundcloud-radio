@@ -1,3 +1,10 @@
+@mixin content-width($width) {
+    max-width: $content-width;
+    padding-left: $spacing-unit;
+    padding-right: $spacing-unit;
+    margin: auto;
+}
+
 @mixin media-query($device) {
     @media all and (min-width: $device) {
         @content;

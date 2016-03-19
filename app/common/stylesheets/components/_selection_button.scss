@@ -1,0 +1,21 @@
+.selection-button {
+    display: inline-block;
+    border: 1px solid #555;
+    color: #999;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    &.selected {
+        border-color: $accent-color;
+        color: $accent-color;
+        @include box-shadow(1);
+    }
+}

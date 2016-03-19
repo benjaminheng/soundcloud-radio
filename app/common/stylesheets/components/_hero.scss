@@ -2,20 +2,20 @@
     background-size: cover;
     background: linear-gradient( rgba(36,52,100, 0.60), rgba(36,52,100, 0.80)),url('../resources/img/hero_bg.jpg') no-repeat center center;
     text-align: center;
+    border-bottom: 1px solid #070a14;
 
     .hero-content-wrapper {
-        max-width: $content-width;
-        margin: auto;
-        padding: $spacing-unit*2 0px;
-        color: #F9F9F9;
-        text-shadow: 1px 1px 2px #1F1F1F;
+        @include content-width($content-width);
+        padding-top: $spacing-unit*2;
+        padding-bottom: $spacing-unit*2;
+        text-shadow: $text-shadow;
 
         .hero-content {
             background: rgba(20, 20, 20, 0.4);
             border: 1px solid #111;
             border-radius: 5px;
-            max-width: 400px;
-            margin: 0px $spacing-unit;
+            max-width: 450px;
+            padding: 0px $spacing-unit/2;
             @include box-shadow(1);
 
             .title {
@@ -31,8 +31,5 @@
                 }
             }
         }
-    }
-
-    @include media-query($small-breakpoint) {
     }
 }

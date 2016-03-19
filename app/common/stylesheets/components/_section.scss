@@ -1,0 +1,8 @@
+.section {
+    @include content-width($content-width);
+
+    .title {
+        text-align: center;
+        text-shadow: $text-shadow;
+    }
+}
