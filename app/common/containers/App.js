@@ -1,31 +1,36 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { selectPreset } from '../actions';
+import config from '../../../config';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Section from '../components/Section';
 import SubHeading from '../components/SubHeading';
-import SelectionButton from '../components/SelectionButton';
+import PresetButtons from '../components/PresetButtons';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.onPresetSelect.bind(this);
+        this.presets = config.presets;
+        this.onPresetSelect = this.onPresetSelect.bind(this);
     }
 
     onPresetSelect(preset) {
-        console.log(preset);
+        const { dispatch, selectedPreset } = this.props;
+        if (selectedPreset !== preset) {
+            dispatch(selectPreset(preset));
+        }
     }
 
     render() {
+        const { selectedPreset } = this.props;
         return (
             <div className='content'>
                 <Header />
                 <Hero />
                 <Section title='Quickstart'>
                     <SubHeading title='Presets' />
-                    <SelectionButton text='electronic' clickHandler={this.onPresetSelect} />
-                    <SelectionButton text='chillstep' selected={true} clickHandler={this.onPresetSelect} />
-                    <SelectionButton text='drumstep' clickHandler={this.onPresetSelect} />
+                    <PresetButtons selectedPreset={selectedPreset} onPresetSelect={this.onPresetSelect} presets={this.presets} />
                 </Section>
             </div>
         );
