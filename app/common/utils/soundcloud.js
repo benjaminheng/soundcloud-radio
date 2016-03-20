@@ -19,24 +19,13 @@ export default class SoundCloud {
 
     getParams(genres, tags, q, from, to) {
         let params = {
-            client_id: config.apiKey
+            client_id: config.apiKey,
+            genres: genres,
+            tags: tags,
+            q: q,
+            'created_at[from]': util.formatDate(from),
+            'created_at[to]': util.formatDate(to)
         };
-
-        if (typeof genres !== 'undefined') {
-            params.genres = genres;
-        }
-        if (typeof tags !== 'undefined') {
-            params.tags = tags;
-        }
-        if (typeof q !== 'undefined') {
-            params.q = q;
-        }
-        if (typeof from !== 'undefined') {
-            params['created_at[from]'] = util.formatDate(from);
-        }
-        if (typeof to !== 'undefined') {
-            params['created_at[to]'] = util.formatDate(to);
-        }
 
         return params;
     }

@@ -2,9 +2,29 @@ const ALPHABETS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
                    'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 
                    's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
+// Remove params that are undefined or empty strings/arrays.
+// Array elements are encoded and joined with ','.
+function formatParams(params) {
+    Object.keys(params).forEach(key => {
+        if (params[key] === '' || typeof params[key] === 'undefined') {
+            delete params[key];
+        } else if (params[key] instanceof Array) {
+            if (params[key].length === 0) {
+                delete params[key];
+            } else {
+                params[key] = params[key].map(k => {
+                    return encodeURIComponent(k)
+                }).join(',');
+            }
+        }
+    });
+    return params;
+}
+
 // treat params as already encoded
 function buildUrl(url, params) {
     let pairs = [];
+    params = formatParams(params);
     Object.keys(params).map(key => {
         pairs.push(`${key}=${params[key]}`);
     });
