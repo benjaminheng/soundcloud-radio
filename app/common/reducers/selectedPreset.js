@@ -15,9 +15,9 @@ const initialState = Immutable.fromJS({
 export default function selectedPreset(state = initialState, action) {
     switch (action.type) {
         case SELECT_PRESET:
-            return state.mergeDeep({
+            return state.merge({
                 name: action.name,
-                info: action.info
+                info: state.get('info').merge(action.info)
             });
         case SHOW_PRESET_INFO:
             return state.setIn(['info', 'visible'], true);

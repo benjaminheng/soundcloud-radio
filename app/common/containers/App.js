@@ -8,6 +8,7 @@ import Hero from '../components/Hero';
 import Section from '../components/Section';
 import SubHeading from '../components/SubHeading';
 import PresetButtons from '../components/PresetButtons';
+import RadioInfoPanel from '../components/RadioInfoPanel';
 
 class App extends Component {
     constructor(props) {
@@ -28,6 +29,7 @@ class App extends Component {
 
     render() {
         const { selectedPreset } = this.props;
+        const presetInfo = selectedPreset.get('info').toJS();
         return (
             <div className='content'>
                 <Header />
@@ -35,6 +37,9 @@ class App extends Component {
                 <Section title='Quickstart'>
                     <SubHeading title='Presets' />
                     <PresetButtons selectedPreset={selectedPreset.get('name')} onPresetSelect={this.onPresetSelect} presets={this.presets} />
+                    {presetInfo.visible &&
+                        <RadioInfoPanel info={presetInfo} />
+                    }
                 </Section>
             </div>
         );
