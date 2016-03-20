@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { selectPreset } from '../actions';
+import { selectPreset, showPresetInfo } from '../actions';
 import config from '../../../config';
+import util from '../utils/util';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Section from '../components/Section';
@@ -17,9 +18,12 @@ class App extends Component {
 
     onPresetSelect(preset) {
         const { dispatch, selectedPreset } = this.props;
-        if (selectedPreset !== preset) {
-            dispatch(selectPreset(preset));
+        if (selectedPreset.get('name') !== preset) {
+            let info = this.presets[preset];
+            info.url = 'http://example.com';
+            dispatch(selectPreset(preset, info));
         }
+        dispatch(showPresetInfo());
     }
 
     render() {
@@ -30,7 +34,7 @@ class App extends Component {
                 <Hero />
                 <Section title='Quickstart'>
                     <SubHeading title='Presets' />
-                    <PresetButtons selectedPreset={selectedPreset} onPresetSelect={this.onPresetSelect} presets={this.presets} />
+                    <PresetButtons selectedPreset={selectedPreset.get('name')} onPresetSelect={this.onPresetSelect} presets={this.presets} />
                 </Section>
             </div>
         );

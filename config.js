@@ -5,7 +5,7 @@ const config = {
     presets: {
         electronic: {
             title: 'SoundCloud Radio (Electronic)',
-            genres: ['electronic'],
+            genres: ['electronic', 'house'],
             tags: []
         },
         chillstep: {
