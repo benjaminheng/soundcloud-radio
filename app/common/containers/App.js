@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { selectPreset, showPresetInfo } from '../actions';
+import { selectPreset, showPresetInfo, hidePresetInfo } from '../actions';
 import config from '../../../config';
 import util from '../utils/util';
 import Header from '../components/Header';
@@ -19,12 +19,16 @@ class App extends Component {
 
     onPresetSelect(preset) {
         const { dispatch, selectedPreset } = this.props;
+        // Update selectedPreset if new selection is made, else toggle visibility
         if (selectedPreset.get('name') !== preset) {
             let info = this.presets[preset];
             info.url = 'http://example.com';
             dispatch(selectPreset(preset, info));
+            dispatch(showPresetInfo());
+        } else {
+            dispatch(selectPreset(null));
+            dispatch(hidePresetInfo());
         }
-        dispatch(showPresetInfo());
     }
 
     render() {
@@ -34,7 +38,7 @@ class App extends Component {
             <div className='content'>
                 <Header />
                 <Hero />
-                <Section title='Quickstart'>
+                <Section title='Get Started'>
                     <SubHeading title='Presets' />
                     <PresetButtons selectedPreset={selectedPreset.get('name')} onPresetSelect={this.onPresetSelect} presets={this.presets} />
                     {presetInfo.visible &&

@@ -1,15 +1,15 @@
 .radio-info-panel {
     padding: $spacing-unit/2;
-    margin: $spacing-unit/2 $spacing-unit/2 0px $spacing-unit/2;
+    margin: $spacing-unit/2;
     background: rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 1px 0 rgba(120, 120, 120, 0.2), inset 0 1px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
 
     .column-wrapper {
         .column {
             margin-bottom: $spacing-unit/2;
         }
     }
-
 
     .info-label {
         display: block;
@@ -26,8 +26,14 @@
         }
     }
 
+    .download-button-wrapper {
+        text-align: center;
+        padding-top: $spacing-unit/2;
+    }
+
     @include media-query($medium-breakpoint) {
-        margin: $spacing-unit/2 $spacing-unit 0px $spacing-unit;
+        margin-left: $spacing-unit;
+        margin-right: $spacing-unit;
 
         .column-wrapper {
             display: flex;

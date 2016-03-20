@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { SELECT_PRESET, SHOW_PRESET_INFO } from '../actions';
+import { SELECT_PRESET, SHOW_PRESET_INFO, HIDE_PRESET_INFO } from '../actions';
 
 const initialState = Immutable.fromJS({
     name: null,
@@ -21,6 +21,8 @@ export default function selectedPreset(state = initialState, action) {
             });
         case SHOW_PRESET_INFO:
             return state.setIn(['info', 'visible'], true);
+        case HIDE_PRESET_INFO:
+            return state.setIn(['info', 'visible'], false);
         default:
             return state;
     }

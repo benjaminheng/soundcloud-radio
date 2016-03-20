@@ -20,6 +20,10 @@ body {
     background-color: $body-bg-color;
 }
 
+button, input, select, textarea {
+  font: inherit;
+}
+
 h1 {
     font-size: 1.6em;
 }
