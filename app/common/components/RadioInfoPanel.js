@@ -33,11 +33,10 @@ export default class RadioInfoPanel extends Component {
                     </div>
                 </div>
                 <div>
-                     <label className='info-label'>URL</label>
+                     <label className='info-label'>Playlist URL</label>
                      <input type='text' className='info-content input-field' value={info.url} readOnly/>
                  </div>
                 <div className='download-button-wrapper'>
-                    <button className='default-button' onClick={e => this.downloadPlaylist()}>Listen to preview</button>
                     <button className='default-button' onClick={e => this.downloadPlaylist()}>Download playlist</button>
                 </div>
             </div>
