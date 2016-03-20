@@ -6,7 +6,7 @@
     position: relative;
 
     .column-wrapper {
-        .column:not(:last-child) {
+        .column {
             margin-bottom: $spacing-unit/2;
         }
     }
@@ -44,10 +44,6 @@
 
             .column {
                 flex: 1;
-
-                &:not(:last-child) {
-                    margin-bottom: 0px;
-                }
             }
         }
     }
