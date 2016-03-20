@@ -28,7 +28,6 @@ input {
     }
 
     &:active {
-        padding-top: 4px;
-        padding-bottom: 2px;
+        background-color: lighten(#292F40, 2%);
     }
 }

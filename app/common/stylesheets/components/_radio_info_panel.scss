@@ -6,7 +6,7 @@
     position: relative;
 
     .column-wrapper {
-        .column {
+        .column:not(:last-child) {
             margin-bottom: $spacing-unit/2;
         }
     }
@@ -28,7 +28,11 @@
 
     .download-button-wrapper {
         text-align: center;
-        padding-top: $spacing-unit/2;
+        .default-button {
+            margin-top: $spacing-unit/2;
+            margin-right: $spacing-unit/4;
+            margin-left: $spacing-unit/4;
+        }
     }
 
     @include media-query($medium-breakpoint) {
@@ -40,6 +44,10 @@
 
             .column {
                 flex: 1;
+
+                &:not(:last-child) {
+                    margin-bottom: 0px;
+                }
             }
         }
     }
