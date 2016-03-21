@@ -16,6 +16,7 @@ class App extends Component {
         this.presets = config.presets;
         this.onPresetSelect = this.onPresetSelect.bind(this);
         this.downloadEndpoint = `http://${config.hostname}/playlist`;
+        this.streamEndpoint = `http://${config.hostname}/stream`;
     }
 
     onPresetSelect(preset) {
@@ -23,12 +24,15 @@ class App extends Component {
         // Update selectedPreset if new selection is made, else toggle visibility
         if (selectedPreset.get('name') !== preset) {
             let info = this.presets[preset];
-            const params = { 
+            let params = { 
                 genres: info.genres, 
                 tags: info.tags,
-                title: info.title
             };
-            info.url = util.buildUrl(this.downloadEndpoint, params);
+
+            info.streamUrl = util.buildUrl(this.streamEndpoint, params);
+            params.title = info.title;
+            info.playlistUrl = util.buildUrl(this.downloadEndpoint, params);
+
             dispatch(selectPreset(preset, info));
             dispatch(showPresetInfo());
         } else {

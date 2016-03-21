@@ -5,10 +5,6 @@ export default class RadioInfoPanel extends Component {
         super(props);
     }
 
-    downloadPlaylist() {
-        console.log('download playlist clicked');
-    }
-
     render() {
         const { info } = this.props;
         let genres = 'None';
@@ -34,10 +30,10 @@ export default class RadioInfoPanel extends Component {
                 </div>
                 <div>
                      <label className='info-label'>Playlist URL</label>
-                     <input type='text' className='info-content input-field' value={info.url} readOnly/>
+                     <input type='text' className='info-content input-field' value={info.playlistUrl} readOnly/>
                  </div>
                 <div className='download-button-wrapper'>
-                    <button className='default-button' onClick={e => this.downloadPlaylist()}>Download playlist</button>
+                    <a href={info.playlistUrl} className='default-button'>Download playlist</a>
                 </div>
             </div>
         )

@@ -7,7 +7,8 @@ const initialState = Immutable.fromJS({
         title: '',
         genres: [],
         tags: [],
-        url: '',
+        playlistUrl: '',
+        streamUrl: '',
         visible: false
     }
 });

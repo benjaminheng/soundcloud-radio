@@ -13,6 +13,7 @@ input {
 }
 
 .default-button {
+    display: inline-block;
     background-color: #292F40;
     border: 1px solid $text-color;
     border-radius: 3px;
@@ -30,4 +31,8 @@ input {
     &:active {
         background-color: lighten(#292F40, 2%);
     }
+}
+
+a.default-button {
+    text-decoration: none;
 }
