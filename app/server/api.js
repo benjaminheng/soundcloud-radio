@@ -11,6 +11,20 @@ const STREAM_HEADERS = {
     'icy-metaint': 16000
 }
 
+router.get('/playlist', (req, res) => {
+    const params = { genres: req.query.genres, tags: req.query.tags };
+    const streamUrl = util.buildUrl(util.STREAM_ENDPOINT, params);
+    const playlistInfo = {
+        title: req.query.title,
+        streamUrl: streamUrl 
+    }
+    const content = util.buildPlaylist(playlistInfo);
+    res.setHeader('Content-Type', 'audio/mpegurl');
+    res.setHeader('Content-Disposition', `attachment; filename=\"${req.query.title}.pls\"`);
+    res.send(content);
+    res.end();
+});
+
 router.get('/stream', (req, res) => {
     res.writeHead(200, STREAM_HEADERS);
     const genres = req.query.genres;

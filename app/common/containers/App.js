@@ -15,8 +15,6 @@ class App extends Component {
         super(props);
         this.presets = config.presets;
         this.onPresetSelect = this.onPresetSelect.bind(this);
-        this.downloadEndpoint = `http://${config.hostname}/playlist`;
-        this.streamEndpoint = `http://${config.hostname}/stream`;
     }
 
     onPresetSelect(preset) {
@@ -29,9 +27,9 @@ class App extends Component {
                 tags: info.tags,
             };
 
-            info.streamUrl = util.buildUrl(this.streamEndpoint, params);
+            info.streamUrl = util.buildUrl(util.STREAM_ENDPOINT, params);
             params.title = info.title;
-            info.playlistUrl = util.buildUrl(this.downloadEndpoint, params);
+            info.playlistUrl = util.buildUrl(util.PLAYLIST_ENDPOINT, params);
 
             dispatch(selectPreset(preset, info));
             dispatch(showPresetInfo());

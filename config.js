@@ -2,7 +2,7 @@ const config = {
     isProduction: process.env.NODE_ENV === 'production',
     port: process.env.PORT,
     apiKey: process.env.API_KEY,
-    hostname: 'radio.hbenjamin.com',
+    hostname: 'localhost:3000',
     presets: {
         electronic: {
             title: 'SoundCloud Radio (Electronic)',

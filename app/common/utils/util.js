@@ -1,6 +1,11 @@
+import config from '../../../config';
+
 const ALPHABETS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 
                    'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 
                    's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+const PLAYLIST_ENDPOINT = `http://${config.hostname}/playlist`;
+const STREAM_ENDPOINT = `http://${config.hostname}/stream`;
 
 // Remove params that are undefined or empty strings/arrays.
 // Array elements are encoded and joined with ','.
@@ -49,6 +54,19 @@ function formatDate(date) {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
+function buildPlaylist(playlistInfo) {
+    const radios = [].concat(playlistInfo);
+    let result = '[playlist]\n\n';
+    radios.forEach((radio, index) => {
+        result += `File${index+1}=${radio.streamUrl}\n`;
+        result += `Title${index+1}=${radio.title}\n`;
+        result += `Length${index+1}=-1\n\n`;
+    });
+    result += `NumberOfEntries=${radios.length}\n`;
+    result += `Version=2`;
+    return result;
+}
+
 // Returns a date component (eg. month) padded with zeros to be length 2.
 // 9 --> 09, 10 --> 10
 function padDateComponent(component) {
@@ -71,8 +89,11 @@ function getRandomAlphabet() {
 }
 
 export default {
+    PLAYLIST_ENDPOINT,
+    STREAM_ENDPOINT,
     buildUrl,
     formatDate,
+    buildPlaylist,
     getRandomInt,
     getRandomElement,
     getRandomAlphabet
