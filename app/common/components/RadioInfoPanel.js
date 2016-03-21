@@ -7,33 +7,34 @@ export default class RadioInfoPanel extends Component {
 
     render() {
         const { info } = this.props;
+        const playlistUrl = info.get('playlistUrl');
         let genres = 'None';
         let tags = 'None';
-        if (info.genres.length > 0) {
-            genres = info.genres.join(', ');
+        if (info.get('genres').size > 0) {
+            genres = info.get('genres').join(', ');
         }
-        if (info.tags.length > 0) {
-            tags = info.tags.join(', ');
+        if (info.get('tags').size > 0) {
+            tags = info.get('tags').join(', ');
         }
 
         return (
             <div className='radio-info-panel'>
                 <div className='column-wrapper'>
-                    <div className='column'>
-                        <label className='info-label'>Genres</label>
-                        <span className='info-content'>{genres}</span>
+                    <div className='column form-group'>
+                        <label className='form-label'>Genres</label>
+                        <span className='form-content'>{genres}</span>
                     </div>
-                    <div className='column'>
-                        <label className='info-label'>Tags</label>
-                        <span className='info-content'>{tags}</span>
+                    <div className='column form-group'>
+                        <label className='form-label'>Tags</label>
+                        <span className='form-content'>{tags}</span>
                     </div>
                 </div>
-                <div>
-                     <label className='info-label'>Playlist URL</label>
-                     <input type='text' className='info-content input-field' value={info.playlistUrl} readOnly/>
-                 </div>
+                <div className='form-group'>
+                     <label className='form-label'>Playlist URL</label>
+                     <input type='text' className='form-content input-field' value={playlistUrl} readOnly/>
+                </div>
                 <div className='download-button-wrapper'>
-                    <a href={info.playlistUrl} className='default-button'>Download playlist</a>
+                    <a href={playlistUrl} className='default-button'>Download playlist</a>
                 </div>
             </div>
         )

@@ -1,7 +1,7 @@
-import Immutable from 'immutable';
+import { fromJS } from 'immutable';
 import { SELECT_PRESET, SHOW_PRESET_INFO, HIDE_PRESET_INFO } from '../actions';
 
-const initialState = Immutable.fromJS({
+const initialState = fromJS({
     name: null,
     info: {
         title: '',

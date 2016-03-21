@@ -18,7 +18,7 @@ function formatParams(params) {
                 delete params[key];
             } else {
                 params[key] = params[key].map(k => {
-                    return encodeURIComponent(k)
+                    return encodeURIComponent(k.trim());
                 }).join(',');
             }
         }

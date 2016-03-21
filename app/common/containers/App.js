@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { selectPreset, showPresetInfo, hidePresetInfo } from '../actions';
+import { selectPreset, showPresetInfo, hidePresetInfo, updateCustomRadio } from '../actions';
 import config from '../../../config';
 import util from '../utils/util';
 import Header from '../components/Header';
@@ -9,12 +9,14 @@ import Section from '../components/Section';
 import SubHeading from '../components/SubHeading';
 import PresetButtons from '../components/PresetButtons';
 import RadioInfoPanel from '../components/RadioInfoPanel';
+import CustomizeRadioPanel from '../components/CustomizeRadioPanel';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.presets = config.presets;
         this.onPresetSelect = this.onPresetSelect.bind(this);
+        this.onCustomizeChange = this.onCustomizeChange.bind(this);
     }
 
     onPresetSelect(preset) {
@@ -39,9 +41,25 @@ class App extends Component {
         }
     }
 
+    onCustomizeChange(title, genres, tags) {
+        const { dispatch } = this.props;
+        // if empty string, assign an empty array, else split by ','
+        genres = genres === '' ? [] : genres.split(',');
+        tags = tags === '' ? [] : tags.split(',');
+
+        let params = { genres, tags };
+        let info = { title, genres, tags };
+        info.streamUrl = util.buildUrl(util.STREAM_ENDPOINT, params);
+        params.title = title;
+        info.playlistUrl = util.buildUrl(util.PLAYLIST_ENDPOINT, params);
+
+        dispatch(updateCustomRadio(info));
+    }
+
     render() {
-        const { selectedPreset } = this.props;
-        const presetInfo = selectedPreset.get('info').toJS();
+        const { selectedPreset, customRadio } = this.props;
+        const presetInfo = selectedPreset.get('info');
+
         return (
             <div className='content'>
                 <Header />
@@ -49,9 +67,10 @@ class App extends Component {
                 <Section title='Get Started'>
                     <SubHeading title='Presets' />
                     <PresetButtons selectedPreset={selectedPreset.get('name')} onPresetSelect={this.onPresetSelect} presets={this.presets} />
-                    {presetInfo.visible &&
+                    {presetInfo.get('visible') &&
                         <RadioInfoPanel info={presetInfo} />
                     }
+                    <CustomizeRadioPanel info={customRadio} onCustomizeChange={this.onCustomizeChange} />
                 </Section>
             </div>
         );

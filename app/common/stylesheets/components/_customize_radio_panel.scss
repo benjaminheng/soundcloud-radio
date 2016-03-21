@@ -1,17 +1,9 @@
-.radio-info-panel {
-    padding: $spacing-unit/2;
-    margin: $spacing-unit/2;
-    background: rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 1px 0 rgba(120, 120, 120, 0.2), inset 0 1px 5px rgba(0, 0, 0, 0.1);
-
+.customize-radio-panel {
     .download-button-wrapper {
         text-align: center;
     }
 
     @include media-query($medium-breakpoint) {
-        margin-left: $spacing-unit;
-        margin-right: $spacing-unit;
-
         .column-wrapper {
             display: flex;
 
@@ -25,4 +17,3 @@
         }
     }
 }
-

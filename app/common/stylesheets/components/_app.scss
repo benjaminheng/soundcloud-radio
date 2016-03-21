@@ -36,3 +36,22 @@ input {
 a.default-button {
     text-decoration: none;
 }
+
+
+.form-group {
+    margin-bottom: $spacing-unit/2;
+    .form-label {
+        display: block;
+        font-size: 0.8em;
+        color: darken($text-color, 22%);
+    }
+
+    .form-content { 
+        display: block;
+        width: 100%;
+
+        &.input-field {
+            margin-top: 5px;
+        }
+    }
+}
