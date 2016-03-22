@@ -4,15 +4,20 @@ const config = {
     apiKey: process.env.API_KEY,
     hostname: 'localhost:3000',
     presets: {
+        custom: {
+            title: '',
+            genres: 'chillstep',
+            tags: ''
+        },
         electronic: {
             title: 'SoundCloud Radio (Electronic)',
-            genres: ['electronic', 'house'],
-            tags: []
+            genres: 'electronic, house',
+            tags: ''
         },
         chillstep: {
             title: 'SoundCloud Radio (Chillstep)',
-            genres: ['chillstep'],
-            tags: []
+            genres: 'chillstep',
+            tags: ''
         }
     }
 }

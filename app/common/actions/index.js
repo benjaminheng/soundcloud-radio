@@ -1,33 +1,18 @@
 import fetch from 'isomorphic-fetch';
 
-export const SELECT_PRESET = 'SELECT_PRESET';
-export const SHOW_PRESET_INFO = 'SHOW_PRESET_INFO';
-export const HIDE_PRESET_INFO = 'HIDE_PRESET_INFO';
-export const UPDATE_CUSTOM_RADIO = 'UPDATE_CUSTOM_RADIO';
+export const SELECT_RADIO = 'SELECT_RADIO';
+export const UPDATE_SELECTED_RADIO = 'UPDATE_SELECTED_RADIO';
 
-export function selectPreset(name, info) {
+export function selectRadio(preset) {
     return {
-        type: SELECT_PRESET,
-        name,
-        info
+        type: SELECT_RADIO,
+        preset
     }
 }
 
-export function showPresetInfo() {
+export function updateSelectedRadio(info) {
     return {
-        type: SHOW_PRESET_INFO
-    }
-}
-
-export function hidePresetInfo() {
-    return {
-        type: HIDE_PRESET_INFO
-    }
-}
-
-export function updateCustomRadio(info) {
-    return {
-        type: UPDATE_CUSTOM_RADIO,
+        type: UPDATE_SELECTED_RADIO,
         info
     }
 }

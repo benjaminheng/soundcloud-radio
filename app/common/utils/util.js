@@ -67,9 +67,12 @@ function buildPlaylist(playlistInfo) {
     return result;
 }
 
+// Returns the stream info constructed from the specified params
 function getStreamInfo(title, genres, tags) {
+    const genresArr = genres === '' ? [] : genres.split(',');
+    const tagsArr = tags === '' ? [] : tags.split(',');
     let info = { title, genres, tags };
-    let params = { genres, tags };
+    let params = { genres: genresArr, tags: tagsArr };
     info.streamUrl = buildUrl(STREAM_ENDPOINT, params);
     params.title = title;
     info.playlistUrl = buildUrl(PLAYLIST_ENDPOINT, params);

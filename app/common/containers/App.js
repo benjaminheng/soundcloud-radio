@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { selectPreset, showPresetInfo, hidePresetInfo, updateCustomRadio } from '../actions';
+import { updateSelectedRadio, selectRadio } from '../actions';
 import config from '../../../config';
 import util from '../utils/util';
 import Header from '../components/Header';
@@ -8,7 +8,6 @@ import Hero from '../components/Hero';
 import Section from '../components/Section';
 import SubHeading from '../components/SubHeading';
 import PresetButtons from '../components/PresetButtons';
-import RadioInfoPanel from '../components/RadioInfoPanel';
 import CustomizeRadioPanel from '../components/CustomizeRadioPanel';
 
 class App extends Component {
@@ -16,47 +15,41 @@ class App extends Component {
         super(props);
         this.presets = config.presets;
         this.onPresetSelect = this.onPresetSelect.bind(this);
-        this.onCustomizeChange = this.onCustomizeChange.bind(this);
+        this.onInfoChange = this.onInfoChange.bind(this);
     }
 
     onPresetSelect(preset) {
-        const { dispatch, selectedPreset } = this.props;
-        // Update selectedPreset if new selection is made, else toggle visibility
-        if (selectedPreset.get('name') !== preset) {
-            let info = this.presets[preset];
-            info = util.getStreamInfo(info.title, info.genres, info.tags);
-            dispatch(selectPreset(preset, info));
-            dispatch(showPresetInfo());
-        } else {
-            dispatch(selectPreset(null));
-            dispatch(hidePresetInfo());
+        const { dispatch, selectedRadio } = this.props;
+        const selectedPreset = selectedRadio.get('preset');
+        if (selectedPreset !== preset) {
+            dispatch(selectRadio(preset));
+            if (preset !== 'custom') {
+                let info = this.presets[preset];
+                info = util.getStreamInfo(info.title, info.genres, info.tags);
+                dispatch(updateSelectedRadio(info));
+            }
         }
     }
 
-    onCustomizeChange(title, genres, tags) {
-        const { dispatch } = this.props;
-        // if empty string, assign an empty array, else split by ','
-        genres = genres === '' ? [] : genres.split(',');
-        tags = tags === '' ? [] : tags.split(',');
+    onInfoChange(title, genres, tags) {
+        const { dispatch, selectedRadio } = this.props;
         const info = util.getStreamInfo(title, genres, tags);
-        dispatch(updateCustomRadio(info));
+        if (selectedRadio.get('preset') !== 'custom') {
+            dispatch(selectRadio('custom'));
+        }
+        dispatch(updateSelectedRadio(info));
     }
 
     render() {
-        const { selectedPreset, customRadio } = this.props;
-        const presetInfo = selectedPreset.get('info');
+        const { selectedRadio, customRadio } = this.props;
+        const presetInfo = selectedRadio.get('info');
 
         return (
             <div className='content'>
                 <Header />
                 <Hero />
                 <Section title='Get Started'>
-                    <SubHeading title='Presets' />
-                    <PresetButtons selectedPreset={selectedPreset.get('name')} onPresetSelect={this.onPresetSelect} presets={this.presets} />
-                    {presetInfo.get('visible') &&
-                        <RadioInfoPanel info={presetInfo} />
-                    }
-                    <CustomizeRadioPanel info={customRadio} onCustomizeChange={this.onCustomizeChange} />
+                    <CustomizeRadioPanel onPresetSelect={this.onPresetSelect} presets={this.presets} radio={selectedRadio} onInfoChange={this.onInfoChange} />
                 </Section>
             </div>
         );

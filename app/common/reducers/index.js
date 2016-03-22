@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import selectedPreset from './selectedPreset';
-import customRadio from './customRadio';
+import selectedRadio from './selectedRadio';
 
 const rootReducer = combineReducers({
-    selectedPreset,
-    customRadio
+    selectedRadio
 });
 
 export default rootReducer;
