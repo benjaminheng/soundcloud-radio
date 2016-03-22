@@ -24,15 +24,7 @@ class App extends Component {
         // Update selectedPreset if new selection is made, else toggle visibility
         if (selectedPreset.get('name') !== preset) {
             let info = this.presets[preset];
-            let params = { 
-                genres: info.genres, 
-                tags: info.tags,
-            };
-
-            info.streamUrl = util.buildUrl(util.STREAM_ENDPOINT, params);
-            params.title = info.title;
-            info.playlistUrl = util.buildUrl(util.PLAYLIST_ENDPOINT, params);
-
+            info = util.getStreamInfo(info.title, info.genres, info.tags);
             dispatch(selectPreset(preset, info));
             dispatch(showPresetInfo());
         } else {
@@ -46,13 +38,7 @@ class App extends Component {
         // if empty string, assign an empty array, else split by ','
         genres = genres === '' ? [] : genres.split(',');
         tags = tags === '' ? [] : tags.split(',');
-
-        let params = { genres, tags };
-        let info = { title, genres, tags };
-        info.streamUrl = util.buildUrl(util.STREAM_ENDPOINT, params);
-        params.title = title;
-        info.playlistUrl = util.buildUrl(util.PLAYLIST_ENDPOINT, params);
-
+        const info = util.getStreamInfo(title, genres, tags);
         dispatch(updateCustomRadio(info));
     }
 

@@ -67,6 +67,15 @@ function buildPlaylist(playlistInfo) {
     return result;
 }
 
+function getStreamInfo(title, genres, tags) {
+    let info = { title, genres, tags };
+    let params = { genres, tags };
+    info.streamUrl = buildUrl(STREAM_ENDPOINT, params);
+    params.title = title;
+    info.playlistUrl = buildUrl(PLAYLIST_ENDPOINT, params);
+    return info;
+}
+
 // Returns a date component (eg. month) padded with zeros to be length 2.
 // 9 --> 09, 10 --> 10
 function padDateComponent(component) {
@@ -94,6 +103,7 @@ export default {
     buildUrl,
     formatDate,
     buildPlaylist,
+    getStreamInfo,
     getRandomInt,
     getRandomElement,
     getRandomAlphabet
