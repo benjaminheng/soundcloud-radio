@@ -23,20 +23,16 @@ class App extends Component {
         const selectedPreset = selectedRadio.get('preset');
         if (selectedPreset !== preset) {
             dispatch(selectRadio(preset));
-            if (preset !== 'custom') {
-                let info = this.presets[preset];
-                info = util.getStreamInfo(info.title, info.genres, info.tags);
-                dispatch(updateSelectedRadio(info));
-            }
+            let info = this.presets[preset];
+            info = util.getStreamInfo(info.title, info.genres, info.tags);
+            dispatch(updateSelectedRadio(info));
         }
     }
 
     onInfoChange(title, genres, tags) {
         const { dispatch, selectedRadio } = this.props;
         const info = util.getStreamInfo(title, genres, tags);
-        if (selectedRadio.get('preset') !== 'custom') {
-            dispatch(selectRadio('custom'));
-        }
+        dispatch(selectRadio('custom'));
         dispatch(updateSelectedRadio(info));
     }
 

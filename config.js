@@ -6,7 +6,7 @@ const config = {
     presets: {
         custom: {
             title: '',
-            genres: 'chillstep',
+            genres: '',
             tags: ''
         },
         electronic: {
