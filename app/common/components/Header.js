@@ -14,7 +14,8 @@ export default class Header extends Component {
                     </h1>
                     <div className='nav'>
                         <ul className='horizontal'>
-                            <li><a className='nav-link' href='#'>How to use</a></li>
+                            <li className='nav-link'><a href='#getstarted'>Get Started</a></li>
+                            <li className='nav-link'><a href='#usage'>Usage</a></li>
                         </ul>
                     </div>
                 </div>

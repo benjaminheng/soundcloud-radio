@@ -21,11 +21,17 @@
             line-height: 1.3*2;     // match line-height of title
 
             .nav-link {
-                color: $text-color;
-                text-decoration: none;
+                &:not(:last-child) {
+                    margin-right: $spacing-unit;
+                }
 
-                &:hover {
-                    text-decoration: underline;
+                a {
+                    color: $text-color;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
             }
         }

@@ -23,11 +23,9 @@ class App extends Component {
         const selectedPreset = selectedRadio.get('preset');
         if (selectedPreset !== preset) {
             dispatch(selectRadio(preset));
-            if (preset !== 'custom') {
-                let info = this.presets[preset];
-                info = util.getStreamInfo(info.title, info.genres, info.tags);
-                dispatch(updateSelectedRadio(info));
-            }
+            let info = this.presets[preset];
+            info = util.getStreamInfo(info.title, info.genres, info.tags);
+            dispatch(updateSelectedRadio(info));
         }
     }
 
@@ -48,7 +46,7 @@ class App extends Component {
             <div className='content'>
                 <Header />
                 <Hero />
-                <Section title='Get Started'>
+                <Section title='Get Started' titleId='getstarted'>
                     <CustomizeRadioPanel onPresetSelect={this.onPresetSelect} presets={this.presets} radio={selectedRadio} onInfoChange={this.onInfoChange} />
                 </Section>
             </div>

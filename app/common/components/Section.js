@@ -6,7 +6,7 @@ export default class Section extends Component {
     }
 
     render() {
-        const { title, children } = this.props;
+        const { title, titleId, children } = this.props;
         let className = 'section';
         if (this.props.className) {
             className += ' ' + this.props.className;
@@ -15,7 +15,7 @@ export default class Section extends Component {
         return (
             <div className={className}>
                 {title &&
-                    <h1 className='title'>{title}</h1>
+                    <h1 id={titleId} className='title'>{title}</h1>
                 }
                 {children}
             </div>
@@ -25,5 +25,6 @@ export default class Section extends Component {
 
 Section.propTypes = {
     title: PropTypes.string,
+    titleId: PropTypes.string,
     className: PropTypes.string
 }
