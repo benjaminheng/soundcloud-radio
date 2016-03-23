@@ -44,7 +44,7 @@ class App extends Component {
             <div className='content'>
                 <Header />
                 <Hero />
-                <Section title='Get Started'>
+                <Section title='Get Started' titleId='getstarted'>
                     <CustomizeRadioPanel onPresetSelect={this.onPresetSelect} presets={this.presets} radio={selectedRadio} onInfoChange={this.onInfoChange} />
                 </Section>
             </div>
