@@ -1,8 +1,16 @@
 .section {
-    @include content-width($content-width);
+    padding: $spacing-unit 0px;
 
-    .title {
-        text-align: center;
-        text-shadow: $text-shadow;
+    &.usage {
+        background-color: #1C1F29;
+    }
+    
+    .section-content {
+        @include content-width($content-width);
+        .title {
+            margin-top: 0px;
+            text-align: center;
+            text-shadow: $text-shadow;
+        }
     }
 }

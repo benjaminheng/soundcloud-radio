@@ -14,10 +14,12 @@ export default class Section extends Component {
 
         return (
             <div className={className}>
-                {title &&
-                    <h1 id={titleId} className='title'>{title}</h1>
-                }
-                {children}
+                <div className='section-content'>
+                    {title &&
+                        <h1 id={titleId} className='title'>{title}</h1>
+                    }
+                    {children}
+                </div>
             </div>
         );
     }

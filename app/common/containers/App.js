@@ -9,6 +9,7 @@ import Section from '../components/Section';
 import SubHeading from '../components/SubHeading';
 import PresetButtons from '../components/PresetButtons';
 import CustomizeRadioPanel from '../components/CustomizeRadioPanel';
+import Footer from '../components/Footer';
 
 class App extends Component {
     constructor(props) {
@@ -44,9 +45,14 @@ class App extends Component {
             <div className='content'>
                 <Header />
                 <Hero />
-                <Section title='Get Started' titleId='getstarted'>
+                <Section title='Get Started' titleId='getstarted' className='get-started'>
                     <CustomizeRadioPanel onPresetSelect={this.onPresetSelect} presets={this.presets} radio={selectedRadio} onInfoChange={this.onInfoChange} />
                 </Section>
+                
+                <Section title='How To Use' titleId='usage' className='usage ss-style-doublediagonal'>
+                </Section>
+
+                <Footer />
             </div>
         );
     }

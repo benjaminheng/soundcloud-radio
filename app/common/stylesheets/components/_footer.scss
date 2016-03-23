@@ -1,0 +1,6 @@
+.footer-wrapper {
+    padding-bottom: $spacing-unit*2;
+    .footer {
+        @include content-width($content-width);
+    }
+}
