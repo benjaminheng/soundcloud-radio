@@ -1,5 +1,5 @@
 .header-wrapper {
-    background-color: #1c2950;
+    background-color: #101830;
     border-bottom: 1px solid #070a14;
     @include box-shadow(1);
     position: relative;
@@ -9,6 +9,7 @@
 
         .title {
             float: left;
+            color: #FCFCFC;
             text-shadow: $text-shadow;
             font-size: 1.3em;
             display: inline-block;

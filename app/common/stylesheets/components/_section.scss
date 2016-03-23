@@ -1,8 +1,12 @@
 .section {
     padding: $spacing-unit 0px;
 
+    &.get-started {
+    background: linear-gradient( rgba(25, 36, 79, 0.45), rgba(22,32,71, 0.25), rgba(0,0,0 ,0.2));
+    }
+
     &.usage {
-        background-color: #1C1F29;
+        background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0,0,0 ,0.35));
     }
     
     .section-content {
