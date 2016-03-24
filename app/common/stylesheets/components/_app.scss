@@ -34,6 +34,20 @@ input {
 
 a.default-button {
     text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+a {
+    color: #2EB3AE;
+    text-decoration: none;
+
+    &:hover {
+        color: lighten(#2EB3AE, 25%);
+        text-decoration: underline;
+    }
 }
 
 
@@ -51,6 +65,21 @@ a.default-button {
 
         &.input-field {
             margin-top: 5px;
+        }
+    }
+}
+
+.big-list {
+    padding-left: 60px;
+    .list-item {
+        font-size: 2.2em;
+        color: $accent-color;
+        font-weight: 600;
+
+        .list-item-content {
+            font-size: 0.59em;
+            color: $accent-color;
+            font-weight: 400;
         }
     }
 }

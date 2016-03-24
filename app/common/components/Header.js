@@ -10,12 +10,12 @@ export default class Header extends Component {
             <div className='header-wrapper'>
                 <div className='header'>
                     <h1 className='title'>
-                        Soundcloud Radio
+                        <a href='/'>Soundcloud Radio</a>
                     </h1>
                     <div className='nav'>
-                        <ul className='horizontal'>
-                            <li className='nav-link'><a href='#getstarted'>Get Started</a></li>
-                            <li className='nav-link'><a href='#usage'>How To Use</a></li>
+                        <ul className='nav-list horizontal'>
+                            <li className='nav-item'><a href='#getstarted'>Get Started</a></li>
+                            <li className='nav-item'><a href='#usage'>How To Use</a></li>
                         </ul>
                     </div>
                 </div>
