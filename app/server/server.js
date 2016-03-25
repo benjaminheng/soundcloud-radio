@@ -4,7 +4,7 @@ import config from '../../config';
 import api from './api';
 
 const app = Express();
-const port = config.port || 3000;
+const port = config.port;
 
 if (!config.apiKey) {
     console.error('[ERROR] API key not set. Specify your API key by setting the API_KEY environment variable.');
