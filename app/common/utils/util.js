@@ -26,7 +26,6 @@ function formatParams(params) {
     return params;
 }
 
-// treat params as already encoded
 function buildUrl(url, params) {
     let pairs = [];
     params = formatParams(params);
@@ -74,7 +73,7 @@ function getStreamInfo(title, genres, tags) {
     let info = { title, genres, tags };
     let params = { genres: genresArr, tags: tagsArr };
     info.streamUrl = buildUrl(STREAM_ENDPOINT, params);
-    params.title = title;
+    params.title = title !== '' ? title : 'SoundCloud Radio';
     info.playlistUrl = buildUrl(PLAYLIST_ENDPOINT, params);
     return info;
 }

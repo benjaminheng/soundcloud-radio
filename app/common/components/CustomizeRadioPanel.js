@@ -25,16 +25,16 @@ export default class CustomizeRadioPanel extends Component {
                 <PresetButtons selectedPreset={radio.get('preset')} onPresetSelect={onPresetSelect} presets={presets} />
                 <div className='form-group'>
                      <label className='form-label'>Playlist Title</label>
-                     <input type='text' value={radio.getIn(['info', 'title'])} onChange={e => this.handleInputChange(e)} ref='customize-radio-title' className='form-content input-field' />
+                     <input type='text' maxLength={128} value={radio.getIn(['info', 'title'])} onChange={e => this.handleInputChange(e)} ref='customize-radio-title' className='form-content input-field' />
                 </div>
                 <div className='column-wrapper'>
                     <div className='column form-group'>
                         <label className='form-label'>Genres</label>
-                        <input type='text' value={genres} onChange={e => this.handleInputChange(e)} ref='customize-radio-genres' className='form-content input-field' />
+                        <input type='text' maxLength={128} value={genres} onChange={e => this.handleInputChange(e)} ref='customize-radio-genres' className='form-content input-field' />
                     </div>
                     <div className='column form-group'>
                         <label className='form-label'>Tags</label>
-                        <input type='text' value={tags} onChange={e => this.handleInputChange(e)} ref='customize-radio-tags' className='form-content input-field' />
+                        <input type='text' maxLength={128} value={tags} onChange={e => this.handleInputChange(e)} ref='customize-radio-tags' className='form-content input-field' />
                     </div>
                 </div>
                 <div className='download-button-wrapper'>

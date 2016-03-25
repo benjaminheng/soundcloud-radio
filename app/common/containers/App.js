@@ -32,8 +32,11 @@ class App extends Component {
 
     onInfoChange(title, genres, tags) {
         const { dispatch, selectedRadio } = this.props;
+        const selectedPreset = selectedRadio.get('preset');
         const info = util.getStreamInfo(title, genres, tags);
-        dispatch(selectRadio('custom'));
+        if (selectedPreset !== 'custom') {
+            dispatch(selectRadio('custom'));
+        }
         dispatch(updateSelectedRadio(info));
     }
 
