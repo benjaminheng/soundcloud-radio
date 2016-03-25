@@ -8,7 +8,7 @@ export default class SubHeading extends Component {
     render() {
         const { title } = this.props;
         return (
-            <div className='section-heading'>
+            <div className='sub-heading'>
                 {title}
             </div>
         );

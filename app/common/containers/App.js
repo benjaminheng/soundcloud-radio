@@ -59,7 +59,24 @@ class App extends Component {
                     <li className='list-item'>
                         <span className='list-item-content'>Import the playlist to your favorite player</span>
                     </li>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <SubHeading title='General Instructions' />
+                    <p>Most modern players support playlist streams. Usually, there will be a <strong>Load Playlist</strong> option in the file menu. You may also be able to <strong>drag-and-drop</strong> the downloaded playlist directly into your player.</p>
+                    <SubHeading title='foobar2000' />
+                    <ol>
+                        <li>Select <strong>File</strong> > <strong>Load Playlist</strong></li>
+                        <li>Browse to your playlist and click <strong>Open</strong></li>
+                    </ol>
+                    <SubHeading title='WinAMP' />
+                    <ol>
+                        <li>Select <strong>File</strong> > <strong>Open Playlist</strong></li>
+                        <li>Browse to your playlist and click <strong>Open</strong></li>
+                    </ol>
+                    <SubHeading title='iTunes' />
+                    <ol>
+                        <li><em>(Windows)</em> Enable the menu bar by pressing <strong>Control+B</strong></li>
+                        <li>Select <strong>File</strong> > <strong>Library</strong> > <strong>Import Playlist</strong></li>
+                        <li>Browse to your playlist and click <strong>Open</strong></li>
+                    </ol>
                 </ol>
                 </Section>
 

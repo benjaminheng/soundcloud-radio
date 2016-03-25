@@ -50,6 +50,10 @@ a {
     }
 }
 
+ol ul, ul ol, ul ul, ol ol {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 
 .form-group {
     margin-bottom: $spacing-unit/2;
