@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import smoothScroll from 'smooth-scroll';
 import { updateSelectedRadio, selectRadio } from '../actions';
 import config from '../../../config';
 import util from '../utils/util';
@@ -17,6 +18,15 @@ class App extends Component {
         this.presets = config.presets;
         this.onPresetSelect = this.onPresetSelect.bind(this);
         this.onInfoChange = this.onInfoChange.bind(this);
+    }
+
+    componentDidMount() {
+        smoothScroll.init({
+            speed: 300,
+            easing: 'easeInOutCubic',
+            offset: 30,
+            updateURL: false,
+        });
     }
 
     onPresetSelect(preset) {
@@ -57,7 +67,7 @@ class App extends Component {
                     <li className='list-item'>
                         <span className='list-item-content'>Download a playlist</span>
                     </li>
-                    <p>Select a preset playlist or customize one in the <a href='#getstarted'>Get Started</a> section.</p>
+                    <p>Select a preset playlist or customize one in the <a data-scroll href='#getstarted'>Get Started</a> section.</p>
                     <p>Choose a title to identify your new playlist, then choose some of your favorite genres and tags. Click on the download button for your playlist file (.PLS format).</p>
                     <li className='list-item'>
                         <span className='list-item-content'>Import the playlist to your favorite player</span>
