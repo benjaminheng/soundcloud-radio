@@ -17,6 +17,13 @@ export default class SoundCloud {
         this.trackIds = [];
     }
 
+    // sort by likes in ascending order
+    sortTracks() {
+        this.tracks.sort((a, b) => {
+            return a.likes_count - b.likes_count;
+        });
+    }
+
     getParams(genres, tags, q, from, to) {
         let params = {
             client_id: config.apiKey,

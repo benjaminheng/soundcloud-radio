@@ -84,6 +84,22 @@ function padDateComponent(component) {
     return ('0' + component).slice(-2);
 }
 
+// Weighs higher numbers more
+function getRandomPreferHigher() {
+    let r1, r2;
+    while (true) {
+        r1 = Math.random();
+        r2 = Math.random();
+        if (r2 < r1) {
+            return r1;
+        }
+    }
+}
+
+function getRandomIntPreferHigher(min, max) {
+    return Math.floor(getRandomPreferHigher() * (max - min)) + min;
+}
+
 // Non-inclusive of max
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -107,6 +123,7 @@ export default {
     buildPlaylist,
     getStreamInfo,
     getRandomInt,
+    getRandomIntPreferHigher,
     getRandomElement,
     getRandomAlphabet
 }

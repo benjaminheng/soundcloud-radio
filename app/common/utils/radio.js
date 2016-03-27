@@ -20,7 +20,7 @@ export default class Radio {
 
     // Add a random track to the queue
     queueRandomTrack(streams, soundcloud) {
-        const index = util.getRandomInt(0, this.soundcloud.tracks.length);
+        const index = util.getRandomIntPreferHigher(0, this.soundcloud.tracks.length);
         const track = this.soundcloud.tracks.splice(index, 1)[0];
         const title = `${track.username} - ${track.title}`;
         const url = util.buildUrl(track.stream_url, {client_id: config.apiKey});
@@ -35,6 +35,7 @@ export default class Radio {
             this.queueRandomTrack();
             return this.soundcloud.populateTracks(this.genres, this.tags);
         }).then(() => {
+            this.soundcloud.sortTracks();
             // 1. Send TRACK_BUFFER_LENGTH number of tracks to client
             // 2. Start scheduling new tracks as each one finishes playing
             for (let i=0; i < TRACK_BUFFER_LENGTH; i++) {
@@ -56,8 +57,9 @@ export default class Radio {
     scheduleNextTrack(duration) {
         this.timer = setTimeout(() => {
             this.queueRandomTrack();
-            if (this.soundcloud.tracks.length < 10) {
+            if (this.soundcloud.tracks.length < 20) {
                 this.soundcloud.populateTracks(this.genres, this.tags);
+                this.soundcloud.sortTracks();
             }
             const track = this.pendingTracks.shift();
             this.scheduleNextTrack(track.duration);
